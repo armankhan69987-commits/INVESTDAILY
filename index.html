@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Platform - Login</title>
+    <style>
+        body { font-family: Arial; background:#f4f4f4; display:flex; justify-content:center; align-items:center; height:100vh; }
+        .container { background:#fff; padding:30px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); width:350px; }
+        h2 { color:#4ca1af; text-align:center; }
+        input { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; }
+        button { width:100%; padding:10px; margin:10px 0; background:#4ca1af; color:white; border:none; border-radius:5px; cursor:pointer; }
+        button:hover { background:#357a8c; }
+        .support { text-align:center; margin-top:10px; }
+        .support a { color:#4ca1af; text-decoration:none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Investment Platform 2025</h2>
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <button onclick="signup()">Sign Up</button>
+        <div class="support">
+            <a href="https://t.me/yourtelegramid" target="_blank">Contact Support (Telegram)</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlr50tTLt6heWur5Fh0Njmkkg7RbPTqjY",
+            authDomain: "investsmart-4ca38.firebaseapp.com",
+            projectId: "investsmart-4ca38",
+            storageBucket: "investsmart-4ca38.firebasestorage.app",
+            messagingSenderId: "500206714508",
+            appId: "1:500206714508:web:eaf5078ef657aacf20c5a9",
+            measurementId: "G-GM943Z7G36"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.login = function() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => window.location.href = "home.html")
+                .catch(err => alert(err.message));
+        }
+
+        window.signup = function() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => window.location.href = "home.html")
+                .catch(err => alert(err.message));
+        }
+    </script>
+</body>
+</html>
